@@ -124,11 +124,12 @@ If you want to flash C.H.I.P. with a custom image, scroll down the page...If you
 With our virtual machine running, we'll start at our *trusty* prompt:
 
     vagrant@vagrant-ubuntu-trusty-32:~$
+    cd ~/CHIP-tools-backup
+    
+Now's the moment of truth - connect the FEL and GND jumpers with a wire as described above, and run the following command
 
-Now let's download the latest firmware (i.e. a Linux kernel, U-Boot and a root filesystem all built with buildroot) and flash it to CHIP.
-
-    cd ~/CHIP-tools
-    ./chip-update-firmware.sh
+    FEL='sudo sunxi-fel' FASTBOOT='sudo fastboot' SNIB=false ./chip-update-firmware.sh -L ../stable-server-b149
+    
 This may take a while - please be patient.
 
 If everything went OK, you can now power up your CHIP again and connect by typing:
