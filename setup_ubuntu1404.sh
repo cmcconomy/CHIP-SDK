@@ -26,7 +26,8 @@ sudo apt-get -y install \
  libacl1-dev \
  zlib1g-dev \
  liblzo2-dev \
- uuid-dev
+ uuid-dev \
+ p7zip-full
 
 if uname -a |grep -q 64;
 then
@@ -79,13 +80,13 @@ make
 sudo make install
 popd
 
-echo -e "\n Installing CHIP-tools"
-if [ -d CHIP-tools ]; then
-  pushd CHIP-tools
+echo -e "\n Installing CHIP-tools-backup"
+if [ -d CHIP-tools-backup ]; then
+  pushd CHIP-tools-backup
   git pull
   popd
 fi
-git clone https://github.com/NextThingCo/CHIP-tools.git
+git clone https://github.com/NextThingCo/CHIP-tools-backup.git
 
 echo -e "\n Installing CHIP-buildroot"
 if [ ! -d CHIP-buildroot ]; then
@@ -93,6 +94,27 @@ if [ ! -d CHIP-buildroot ]; then
 else
   pushd CHIP-buildroot
   git pull
+  popd
+fi
+
+echo -e "\n Downloading stable-server-b149 binary files"
+if [ ! -d stable-server-b149 ]; then
+  mkdir ~/stable-server-b149/
+  pushd ~/stable-server-b149/
+    
+  wget https://dl.bintray.com/yoursunny/CHIP/stable-server-b149/chip-400000-4000-500.ubi.sparse.7z.001
+  wget https://dl.bintray.com/yoursunny/CHIP/stable-server-b149/chip-400000-4000-500.ubi.sparse.7z.002
+  wget https://dl.bintray.com/yoursunny/CHIP/stable-server-b149/chip-400000-4000-680.ubi.sparse.7z.001
+  wget https://dl.bintray.com/yoursunny/CHIP/stable-server-b149/chip-400000-4000-680.ubi.sparse.7z.002
+  wget https://dl.bintray.com/yoursunny/CHIP/stable-server-b149/spl-40000-1000-100.bin
+  wget https://dl.bintray.com/yoursunny/CHIP/stable-server-b149/spl-400000-4000-500.bin
+  wget https://dl.bintray.com/yoursunny/CHIP/stable-server-b149/spl-400000-4000-680.bin
+  wget https://dl.bintray.com/yoursunny/CHIP/stable-server-b149/sunxi-spl.bin
+  wget https://dl.bintray.com/yoursunny/CHIP/stable-server-b149/u-boot-dtb.bin
+  wget https://dl.bintray.com/yoursunny/CHIP/stable-server-b149/uboot-40000.bin
+  wget https://dl.bintray.com/yoursunny/CHIP/stable-server-b149/uboot-400000.bin
+    
+  7z x chip-400000-4000-500.ubi.sparse.7z.001
   popd
 fi
 
