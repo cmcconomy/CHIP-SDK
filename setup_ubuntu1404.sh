@@ -99,23 +99,24 @@ fi
 
 echo -e "\n Downloading stable-server-b149 binary files"
 if [ ! -d stable-server-b149 ]; then
-  mkdir ~/stable-server-b149/
-  pushd ~/stable-server-b149/
+  mkdir /home/vagrant/stable-server-b149/
+  pushd /home/vagrant/stable-server-b149/
     
-  wget https://dl.bintray.com/yoursunny/CHIP/stable-server-b149/chip-400000-4000-500.ubi.sparse.7z.001
-  wget https://dl.bintray.com/yoursunny/CHIP/stable-server-b149/chip-400000-4000-500.ubi.sparse.7z.002
-  wget https://dl.bintray.com/yoursunny/CHIP/stable-server-b149/chip-400000-4000-680.ubi.sparse.7z.001
-  wget https://dl.bintray.com/yoursunny/CHIP/stable-server-b149/chip-400000-4000-680.ubi.sparse.7z.002
-  wget https://dl.bintray.com/yoursunny/CHIP/stable-server-b149/spl-40000-1000-100.bin
-  wget https://dl.bintray.com/yoursunny/CHIP/stable-server-b149/spl-400000-4000-500.bin
-  wget https://dl.bintray.com/yoursunny/CHIP/stable-server-b149/spl-400000-4000-680.bin
-  wget https://dl.bintray.com/yoursunny/CHIP/stable-server-b149/sunxi-spl.bin
-  wget https://dl.bintray.com/yoursunny/CHIP/stable-server-b149/u-boot-dtb.bin
-  wget https://dl.bintray.com/yoursunny/CHIP/stable-server-b149/uboot-40000.bin
-  wget https://dl.bintray.com/yoursunny/CHIP/stable-server-b149/uboot-400000.bin
+  wget -q https://dl.bintray.com/yoursunny/CHIP/stable-server-b149/chip-400000-4000-500.ubi.sparse.7z.001
+  wget -q https://dl.bintray.com/yoursunny/CHIP/stable-server-b149/chip-400000-4000-500.ubi.sparse.7z.002
+  wget -q https://dl.bintray.com/yoursunny/CHIP/stable-server-b149/chip-400000-4000-680.ubi.sparse.7z.001
+  wget -q https://dl.bintray.com/yoursunny/CHIP/stable-server-b149/chip-400000-4000-680.ubi.sparse.7z.002
+  wget -q https://dl.bintray.com/yoursunny/CHIP/stable-server-b149/spl-40000-1000-100.bin
+  wget -q https://dl.bintray.com/yoursunny/CHIP/stable-server-b149/spl-400000-4000-500.bin
+  wget -q https://dl.bintray.com/yoursunny/CHIP/stable-server-b149/spl-400000-4000-680.bin
+  wget -q https://dl.bintray.com/yoursunny/CHIP/stable-server-b149/sunxi-spl.bin
+  wget -q https://dl.bintray.com/yoursunny/CHIP/stable-server-b149/u-boot-dtb.bin
+  wget -q https://dl.bintray.com/yoursunny/CHIP/stable-server-b149/uboot-40000.bin
+  wget -q https://dl.bintray.com/yoursunny/CHIP/stable-server-b149/uboot-400000.bin
     
   7z x chip-400000-4000-500.ubi.sparse.7z.001
   popd
+  sudo chown -R vagrant:vagrant /home/vagrant/stable-server-b149/
 fi
 
 if [ $(echo $PWD | grep vagrant) ];then
